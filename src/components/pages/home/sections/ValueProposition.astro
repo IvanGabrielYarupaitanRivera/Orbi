@@ -1,0 +1,100 @@
+---
+import { Cog, Users, UserCheck, TrendingUp } from "@lucide/astro";
+
+// Definir los datos de las tarjetas de propuesta de valor
+const valuePropositions = [
+  {
+    title: "Aprendizaje práctico desde el día uno",
+    description:
+      "Nuestra metodología de proyectos reales te permite aplicar lo aprendido inmediatamente. Nada de teoría abstracta - construyes mientras aprendes.",
+    icon: Cog,
+    rotateIcon: true,
+  },
+  {
+    title: "Currículo diseñado por la industria tech peruana",
+    description:
+      "Desarrollamos nuestros programas junto a empresas locales que buscan talento. Aprendes exactamente lo que el mercado necesita ahora.",
+    icon: Users,
+    rotateIcon: false,
+  },
+  {
+    title: "Acompañamiento personalizado",
+    description:
+      "Cada estudiante tiene acceso a mentores experimentados que trabajan en el sector tech. Resuelve dudas en tiempo real y recibe feedback constante.",
+    icon: UserCheck,
+    rotateIcon: false,
+  },
+  {
+    title: "Empleabilidad garantizada",
+    description:
+      "No solo te formamos, te conectamos directamente con oportunidades laborales. Nuestro proceso culmina cuando consigues tu primer empleo tech.",
+    icon: TrendingUp,
+    rotateIcon: true,
+  },
+];
+---
+
+<section class="bg-white py-16 md:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Encabezado de sección con estética MD3 -->
+    <div class="text-center mb-12 md:mb-20">
+      <div class="inline-block mb-3">
+        <div class="h-1.5 w-16 bg-red-800 rounded-full mb-2 mx-auto"></div>
+      </div>
+      <h2
+        class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight"
+      >
+        ¿Por qué elegir <span class="text-red-800">Orbi</span>?
+      </h2>
+      <p class="max-w-2xl mx-auto text-lg text-gray-600 leading-relaxed">
+        Nuestra propuesta de valor está diseñada para maximizar tu éxito en la
+        industria tecnológica peruana.
+      </p>
+    </div>
+ 
+     <!-- Tarjetas de propuesta de valor -->
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {valuePropositions.map((item, index) => (
+        <div
+          class="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-6 hover:p-5 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 group relative overflow-hidden"
+        >
+          <!-- Elementos decorativos MD3 -->
+          <div
+            class="absolute -right-10 -top-10 w-20 h-20 bg-red-800/5 rounded-full transform group-hover:scale-150 transition-transform ease-out duration-500"
+          >
+          </div>
+          <div
+            class="absolute -left-4 -bottom-4 w-16 h-16 bg-red-800/5 rounded-full transform group-hover:scale-150 transition-transform ease-out duration-700 delay-100"
+          >
+          </div>
+
+          <div class="relative">
+            <!-- Ícono con microanimación -->
+            <div
+              class="h-14 w-14 bg-red-50 rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:bg-red-100 duration-300 relative z-10 group-hover:scale-110 transform transition-transform"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-red-800/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+              </div>
+              <item.icon class="h-8 w-8 text-red-800 transform group-hover:scale-110 transition-transform ease-out duration-700" stroke-width={1.5}/>
+            </div>
+
+            <!-- Contenido con microanimaciones -->
+            <h3
+              class="text-xl font-semibold text-gray-900 mb-3 group-hover:text-red-800 transition-colors duration-300 relative z-10"
+            >
+              {item.title}
+            </h3>
+            <p
+              class="text-gray-600 group-hover:text-gray-700 transition-colors duration-300 relative z-10 text-pretty"
+            >
+              {item.description}
+            </p>
+ 
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
