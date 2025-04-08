@@ -50,44 +50,60 @@ const stats = [
       </p>
     </div>
 
-    <!-- Proceso paso a paso -->
-    <div class="relative">
-      <!-- Línea conectora vertical para desktop -->
-      <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-800/20 via-red-800/40 to-red-800/20 transform -translate-x-1/2"></div>
-
-      <div class="space-y-12 lg:space-y-0 relative">
-        {steps.map((step, index) => (
-          <div class={`lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center ${index % 2 === 0 ? "" : "lg:grid-flow-dense"}`}>
-            <!-- Contenido del paso -->
-            <div class={`bg-white rounded-3xl p-8 shadow-sm lg:shadow-md relative z-10 transform transition-transform duration-500 hover:-translate-y-1 ${index % 2 === 0 ? "lg:text-right" : ""}`}>
-              <div class={`inline-flex items-center mb-4 ${index % 2 === 0 ? "lg:ml-auto" : ""}`}>
-                <div class="h-10 w-10 rounded-full bg-red-800/10 flex items-center justify-center mr-3">
-                  <span class="text-red-800 font-bold">{step.id}</span>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900">{step.title}</h3>
+   <!-- Proceso paso a paso -->
+<div class="relative">
+    <!-- Línea conectora vertical para desktop -->
+    <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-800/10 via-red-800/30 to-red-800/10 transform -translate-x-1/2"></div>
+  
+    <div class="space-y-16 lg:space-y-32 relative">
+      {steps.map((step, index) => (
+        <div class={`lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center ${index % 2 === 0 ? "" : "lg:grid-flow-dense"} group`}> 
+        
+          <div class={`bg-white rounded-3xl p-8 shadow-sm group-hover:shadow-lg relative z-10 transform transition-all duration-500 group-hover:-translate-y-2 border border-gray-100/60 ${index % 2 === 0 ? "lg:text-right" : ""}`}>
+            <!-- Elemento decorativo según MD3 -->
+            <div class="absolute -right-4 -top-4 w-16 h-16 bg-gradient-to-br from-red-800/10 to-red-700/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div class="absolute -left-4 -bottom-4 w-20 h-20 bg-gradient-to-br from-red-800/10 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100"></div>
+            
+            <!-- Número y título -->
+            <div class={`flex items-center mb-6 ${index % 2 === 0 ? "lg:justify-end" : ""}`}>
+              <div class="h-14 w-14 rounded-2xl bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center mr-4 shadow-sm group-hover:shadow transition-shadow duration-300">
+                <span class="text-red-800 font-bold text-xl">{step.id}</span>
               </div>
-              <p class="text-gray-600">{step.description}</p>
+              <h3 class="text-2xl font-bold text-gray-900 group-hover:text-red-800 transition-colors duration-300">{step.title}</h3>
             </div>
-
-            <!-- Ilustración -->
-            <div class={`flex justify-center ${index % 2 === 0 ? "lg:order-first" : ""} hidden lg:flex`}>
-              <div class="relative w-64 h-64 bg-gradient-to-br from-red-50 to-red-100 rounded-full flex items-center justify-center overflow-hidden shadow-lg">
-                <div class="absolute inset-0 overflow-hidden opacity-20">
-                  <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-red-800/10 animate-float-slow"></div>
-                  <div class="absolute -left-10 -bottom-10 w-24 h-24 rounded-full bg-red-800/10 animate-float-medium"></div>
-                </div>
-                <div class="relative z-10 transform transition-transform duration-500 hover:scale-110 ">
-                  <step.icon size={80} class="text-red-800" stroke-width={1.5} />
-                </div>
-              </div>
-            </div>
-
-            <!-- Marcador de paso para desktop -->
-            <div class="hidden lg:block absolute left-1/2 top-1/2 w-12 h-12 -ml-6 -mt-6 bg-white rounded-full border-4 border-red-800 z-20"></div>
+            
+            <!-- Contenido con mejor tipografía -->
+            <p class="text-gray-600 leading-relaxed text-pretty">{step.description}</p>
+            
+            <!-- Indicador visual MD3 -->
+            <div class={`mt-6 ${index % 2 === 0 ? "ml-auto" : ""} h-0.5 w-0 group-hover:w-16 bg-red-800 rounded-full transition-all duration-700 ease-out`}></div>
           </div>
-        ))}
-      </div>
+  
+          <!-- Ilustración -->
+          <div class={`flex justify-center ${index % 2 === 0 ? "lg:order-first" : ""} hidden lg:flex`}>
+            <div class="relative w-72 h-72 bg-gradient-to-br from-red-50 to-red-100 rounded-3xl flex items-center justify-center overflow-hidden shadow-md group-hover:shadow-lg transition-all duration-500">
+              <!-- Elementos decorativos -->
+              <div class="absolute inset-0 overflow-hidden opacity-20">
+                <div class="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-gradient-to-br from-red-800/20 to-red-700/5 animate-float-slow"></div>
+                <div class="absolute -left-10 -bottom-10 w-32 h-32 rounded-full bg-gradient-to-tr from-red-800/20 to-transparent animate-float-medium"></div>
+                
+                <!-- Patrón sutil -->
+                <div class="absolute inset-4 rounded-2xl border border-dashed border-red-800/10"></div>
+              </div>
+              
+              <!-- Icono con animación -->
+              <div class="relative z-10 transform transition-all duration-500 group-hover:scale-110 bg-white/80 backdrop-blur-sm p-5 rounded-2xl shadow-sm group-hover:shadow">
+                <step.icon size={90} class="text-red-800" stroke-width={1.5} />
+              </div>
+            </div>
+          </div>
+  
+          <!-- Marcador de paso para desktop -->
+          <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white rounded-full border-4 border-red-800/80 z-20 shadow-md" style={`top: ${50 + (index * 0) }%`}></div>
+        </div>
+      ))}
     </div>
+  </div>
 
     <!-- Estadísticas -->
     <div class="mt-20 mb-16 py-12 px-6 bg-white rounded-3xl shadow-md relative overflow-hidden">
