@@ -1,0 +1,180 @@
+---
+import { Code, LineChart, Layout, TrendingUp, Clock, Users, DollarSign, ChevronRight } from "@lucide/astro";
+
+// Definir los datos de los programas destacados
+const programs = [
+  {
+    title: "Desarrollo Web Full Stack",
+    description: "Domina las tecnologías front-end y back-end más demandadas en Perú. Aprenderás a crear aplicaciones web completas desde cero con HTML, CSS, JavaScript, React, Node.js y bases de datos.",
+    duration: "6 meses",
+    level: "Principiante a intermedio",
+    employability: "87%",
+    salary: "S/. 2,500",
+    icon: Code,
+    popular: true,
+    bgClass: "from-red-50 to-red-100",
+    levelClass: "bg-blue-100 text-blue-800"
+  },
+  {
+    title: "Ciencia de Datos",
+    description: "Conviértete en un profesional capaz de extraer conocimiento y valor de los datos. Aprenderás Python, estadística, machine learning y visualización de datos aplicados a casos reales peruanos.",
+    duration: "8 meses",
+    level: "Intermedio",
+    employability: "85%",
+    salary: "S/. 3,200",
+    icon: LineChart,
+    popular: false,
+    bgClass: "from-purple-50 to-purple-100",
+    levelClass: "bg-purple-100 text-purple-800"
+  },
+  {
+    title: "Diseño UX/UI",
+    description: "Crea experiencias digitales centradas en el usuario con principios de diseño moderno. Dominarás herramientas como Figma y aprenderás metodologías de investigación de usuarios.",
+    duration: "5 meses",
+    level: "Principiante a intermedio",
+    employability: "90%",
+    salary: "S/. 2,800",
+    icon: Layout,
+    popular: true,
+    bgClass: "from-amber-50 to-amber-100",
+    levelClass: "bg-blue-100 text-blue-800"
+  },
+  {
+    title: "Marketing Digital",
+    description: "Desarrolla estrategias de marketing digital efectivas para el mercado peruano. Aprenderás SEO, SEM, redes sociales, email marketing y analítica web.",
+    duration: "4 meses",
+    level: "Principiante",
+    employability: "88%",
+    salary: "S/. 2,300",
+    icon: TrendingUp,
+    popular: false,
+    bgClass: "from-green-50 to-green-100",
+    levelClass: "bg-green-100 text-green-800"
+  }
+];
+---
+
+<section id="programas" class="py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Encabezado de sección con estética MD3 -->
+    <div class="text-center mb-12 md:mb-20">
+      <div class="inline-block mb-3">
+        <div class="h-1.5 w-16 bg-red-800 rounded-full mb-2 mx-auto"></div>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+        Nuestros <span class="text-red-800">programas</span> destacados
+      </h2>
+      <p class="max-w-2xl mx-auto text-lg text-gray-600 leading-relaxed">
+        Formación intensiva diseñada para las necesidades del mercado laboral tecnológico peruano
+      </p>
+    </div>
+
+   <!-- Programas destacados -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    {programs.map((program) => (
+      <div class="relative bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group flex flex-col h-full">
+        
+        <!-- Badge para programas populares -->
+        {program.popular && (
+          <div class="absolute top-4 right-4 bg-red-800 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm z-20">
+            <span class="hidden sm:inline">Más demandado</span>
+            <span class="sm:hidden">Popular</span>
+          </div>
+        )}
+        
+        <!-- Cabecera con ícono -->
+        <div class={`p-5 sm:p-6 bg-gradient-to-br ${program.bgClass} relative overflow-hidden group-hover:bg-opacity-90 transition-all duration-300`}>
+        <!-- Elementos decorativos con animación -->
+            <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-white/20 rounded-full transform group-hover:scale-125 group-hover:rotate-12 transition-transform duration-500"></div>
+            <div class="absolute right-8 bottom-6 w-12 h-12 bg-white/30 rounded-full transform group-hover:scale-110 group-hover:translate-x-2 transition-all duration-700 delay-100"></div>
+        
+            <!-- Ícono con microanimación -->
+            <div class="relative z-10 w-14 sm:w-16 h-14 sm:h-16 bg-white rounded-2xl shadow-md flex items-center justify-center mb-3 sm:mb-4 group-hover:shadow-lg transform group-hover:-translate-y-1 transition-all duration-300">
+                <div class="absolute inset-0 bg-red-50 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <program.icon 
+                size={28} 
+                class="text-red-800 transform group-hover:scale-110 transition-all duration-300" 
+                stroke-width={1.5} 
+                />
+            </div>
+        
+            <!-- Título con animación -->
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 line-clamp-2 relative">
+                <span class="relative z-10 group-hover:text-red-900 transition-colors duration-300">{program.title}</span>
+                <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-red-800/30 group-hover:w-full transition-all duration-500 rounded-full"></span>
+            </h3>
+        </div>
+        
+        <!-- Contenido -->
+        <div class="p-5 sm:p-6 flex-grow flex flex-col">
+          <div class="flex flex-wrap gap-3 mb-4">
+            <div class="flex items-center">
+              <Clock size={16} class="text-gray-500 mr-1 flex-shrink-0" />
+              <span class="text-xs sm:text-sm text-gray-600">{program.duration}</span>
+            </div>
+            
+            <div class={`text-xs font-medium px-2 py-1 rounded-full ${program.levelClass} flex-shrink-0`}>
+              {program.level}
+            </div>
+          </div>
+          
+          <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 line-clamp-3 flex-grow">{program.description}</p>
+          
+          <!-- Resultados -->
+            <div class="flex flex-col gap-3 mb-5 sm:mb-6">
+            <h4 class="text-sm font-medium text-gray-800 mb-1">Resultados del programa:</h4>
+            
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <!-- Empleabilidad con estilo MD3 -->
+                <div class="flex items-center bg-red-50 rounded-2xl px-3 py-2 flex-grow">
+                <div class="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center mr-2">
+                    <Users size={16} class="text-red-800" />
+                </div>
+                <div>
+                    <span class="text-xs text-gray-500 block">Empleabilidad</span>
+                    <span class="text-sm font-medium text-red-900">{program.employability}</span>
+                </div>
+                </div>
+                
+                <!-- Salario con estilo MD3 -->
+                <div class="flex items-center bg-red-50 rounded-2xl px-3 py-2 flex-grow">
+                <div class="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center mr-2">
+                    <DollarSign size={16} class="text-red-800" />
+                </div>
+                <div>
+                    <span class="text-xs text-gray-500 block">Salario inicial</span>
+                    <span class="text-sm font-medium text-red-900">{program.salary}</span>
+                </div>
+                </div>
+            </div>
+            </div>
+          
+          <!-- Botón de más información -->
+          <div class="mt-auto">
+            <a 
+              href="#" 
+              class="inline-flex w-full items-center justify-center px-4 py-2 border border-red-800 text-sm font-medium rounded-full text-red-800 bg-transparent hover:bg-red-800 hover:text-white transition-colors duration-300"
+            >
+              <span>Más información</span>
+              <ChevronRight size={16} class="ml-1 transform group-hover:translate-x-1 transition-transform duration-300" />
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+    
+    <!-- CTA para explorar todos los programas -->
+    <div class="mt-12 md:mt-16 text-center">
+      <a 
+        href="#todos-programas" 
+        class="inline-flex items-center justify-center rounded-full bg-red-800 px-6 py-3 text-base font-medium text-white shadow-md hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-800 focus:ring-offset-2 transition-all ease-in-out duration-200"
+      >
+        Explorar todos los programas
+        <ChevronRight size={18} class="ml-2" />
+      </a>
+    </div>
+  </div>
+</section>
+
+ 
