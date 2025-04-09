@@ -1,0 +1,95 @@
+---
+import { Users, TrendingUp, DollarSign } from "@lucide/astro";
+
+// Datos de las estadísticas
+const stats = [
+  {
+    title: "Empleabilidad en Orbi",
+    value: "94%",
+    description: "de nuestros graduados consiguen empleo en el sector tech",
+    additional: "85% lo logran en menos de 3 meses",
+    icon: Users,
+    bgClass: "from-red-50 to-red-100",
+  },
+  {
+    title: "Mercado Laboral Tech Peruano",
+    value: "35.000+",
+    description: "vacantes tecnológicas proyectadas para 2024",
+    additional: "Crecimiento anual del 22% en demanda",
+    icon: TrendingUp,
+    bgClass: "from-red-50 to-red-100",
+  },
+  {
+    title: "Salarios en el Sector",
+    value: "S/. 3.200",
+    description: "salario inicial promedio para desarrolladores junior",
+    additional: "60% más que el salario mínimo nacional",
+    icon: DollarSign,
+    bgClass: "from-red-50 to-red-100",
+  },
+];
+---
+
+<section id="impacto" class="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+   
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <!-- Encabezado de sección con estética MD3 -->
+    <div class="text-center mb-12 md:mb-20">
+      <div class="inline-block mb-3">
+        <div class="h-1.5 w-16 bg-red-800 rounded-full mb-2 mx-auto"></div>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+        Impacto en el <span class="text-red-800">mercado laboral</span>
+      </h2>
+      <p class="max-w-2xl mx-auto text-lg text-gray-600 leading-relaxed">
+        Transformando el panorama tecnológico peruano
+      </p>
+    </div>
+
+    <!-- Bloques de estadísticas -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {stats.map((stat) => (
+      <div class="relative bg-white rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 overflow-hidden group h-full">
+        <!-- Fondo decorativo con animación -->
+        <div class={`absolute inset-0 bg-gradient-to-br ${stat.bgClass} opacity-20 group-hover:opacity-40 transition-all duration-500`}></div>
+        
+        <!-- Elementos decorativos MD3 -->
+        <div class="absolute -right-6 -top-6 w-20 h-20 bg-red-800/5 rounded-full transform scale-0 group-hover:scale-100 transition-transform ease-out duration-500"></div>
+        <div class="absolute -left-4 -bottom-4 w-16 h-16 bg-red-800/10 rounded-full transform scale-0 group-hover:scale-100 transition-transform ease-out duration-700 delay-100"></div>
+        
+        <!-- Contenido -->
+        <div class="relative z-10 p-6 md:p-8 flex flex-col h-full">
+          <!-- Icono con microanimación -->
+          <div class="w-14 h-14 bg-white rounded-2xl shadow-md flex items-center justify-center mb-5 group-hover:shadow-lg transform group-hover:scale-105 transition-all duration-300">
+            <stat.icon size={28} class="text-red-800 transform group-hover:rotate-3 transition-transform duration-500" stroke-width={1.5} />
+          </div>
+          
+          <!-- Sección de contenido principal -->
+          <div>
+            <!-- Título con animación de subrayado -->
+            <h3 class="text-lg font-bold text-gray-900 mb-3 relative inline-block">
+              {stat.title}
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-800/30 group-hover:w-full transition-all duration-500 rounded-full"></span>
+            </h3>
+            
+            <!-- Valor principal con resaltado -->
+            <div class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-800 to-red-900 mb-4 transform group-hover:scale-105 origin-left transition-transform duration-300">{stat.value}</div>
+            
+            <!-- Descripción con mejor espaciado -->
+            <p class="text-gray-600 mb-5 text-pretty leading-relaxed">{stat.description}</p>
+          </div>
+          
+          <!-- Dato adicional con estilo MD3 -->
+          <div class="mt-auto pt-2 border-t border-gray-100">
+            <div class="text-sm text-gray-500 bg-gray-50 py-2 px-3 rounded-xl group-hover:bg-red-50/50 transition-colors duration-300 flex items-center">
+              <div class="w-2 h-2 bg-red-800/40 rounded-full mr-2 group-hover:scale-125 transition-transform duration-300"></div>
+              {stat.additional}
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+  </div>
+</section> 
